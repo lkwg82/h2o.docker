@@ -3,7 +3,7 @@
 set -e
 
 apiResult=api.releases
-#curl https://api.github.com/repos/h2o/h2o/releases > $apiResult
+curl -s https://api.github.com/repos/h2o/h2o/releases > $apiResult
 releases=$(cat $apiResult | jq '.[].tag_name'| sed -e 's#"##g' | sort)
 
 for r in $releases; do
