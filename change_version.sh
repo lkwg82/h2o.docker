@@ -21,5 +21,5 @@ if [ -n "$tag" ]; then
     git tag --force --annotate $tag -m "released version $tag" HEAD 
 fi
 
-git push 
-git push --tags
+#git push 
+#git push --tags
