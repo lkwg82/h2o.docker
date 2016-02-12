@@ -16,6 +16,3 @@ for r in $releases; do
         echo " ... already tagged"
     fi
 done
-
-#./change_version.sh master
-
