@@ -1,0 +1,23 @@
+#
+# Dockerfile for h2o
+#
+
+FROM alpine
+MAINTAINER Lars K.W. Gohlke <lkwg82@gmx.de>
+
+# need for ocsp stapling
+RUN apk add -U perl openssl \
+    && rm -rf /var/cache/apk/*
+
+ONBUILD RUN apk update \
+    && rm -rf /var/cache/apk/*
+
+RUN mkdir /etc/h2o
+ADD h2o.conf /etc/h2o/
+ADD h2o.bin.tar /
+
+EXPOSE 80 443
+WORKDIR /etc/h2o
+
+ENTRYPOINT ["h2o"]
+CMD ["h2o","--help"]
