@@ -9,6 +9,18 @@ version specific tags below
 
 ---
 
+simplest run
+```bash
+docker run -p "8080:80" -ti lkwg82/h2o-http2-server
+```
+test with 
+```bash
+$ curl http://localhost:8080/
+not found
+```
+
+---
+
 automatically ...
 
  - checks for new releases 
