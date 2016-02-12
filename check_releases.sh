@@ -17,5 +17,5 @@ for r in $releases; do
     fi
 done
 
-./change_version.sh master
+#./change_version.sh master
 
