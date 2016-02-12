@@ -1,7 +1,7 @@
 FROM alpine
 MAINTAINER Lars K.W. Gohlke <lkwg82@gmx.de>
 
-ENV VERSION master
+ENV VERSION tags/v1.7.0
 
 RUN apk update \
     && apk upgrade \
