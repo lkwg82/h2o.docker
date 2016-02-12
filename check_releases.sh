@@ -3,12 +3,12 @@
 set -e
 
 apiResult=api.releases
-curl https://api.github.com/repos/h2o/h2o/releases > $apiResult
-releases=$(cat $apiResult | jq '.[].tag_name'| sed -e 's#"##g')
+#curl https://api.github.com/repos/h2o/h2o/releases > $apiResult
+releases=$(cat $apiResult | jq '.[].tag_name'| sed -e 's#"##g' | sort)
 
 for r in $releases; do
     echo -n "checking $r ... "
-    if [ $(grep ^$r tagged.versions | wc -l) -eq 0 ]; then
+    if [ $(grep ^$r$ tagged.versions | wc -l) -eq 0 ]; then
         echo " tagging"
         ./change_version.sh $r
         echo $r >> tagged.versions
@@ -17,5 +17,5 @@ for r in $releases; do
     fi
 done
 
-git push 
-git push --tags --force
+./change_version.sh master
+
