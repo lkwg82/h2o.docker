@@ -15,7 +15,10 @@ fi
 
 sed -e 's#^\(ENV VERSION \).*#\1 '$VERSION'#' -i Dockerfile
 
-git commit -m "changed to version $VERSION" Dockerfile tagged.versions
+line='- ```'$tag'```'" (*[$tag/Dockerfile](https://github.com/lkwg82/h2o.docker/blob/$tag/Dockerfile)*)"
+echo $line >> README.md
+
+git commit -m "changed to version $VERSION" Dockerfile tagged.versions README.md
 
 if [ -n "$tag" ]; then
     git tag --force --annotate $tag -m "released version $tag" HEAD 
