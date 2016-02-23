@@ -30,6 +30,12 @@ automatically ...
 ```bash
 ./check_releases.sh
 ```
+
+in crontab
+```bash
+12 23 * * * bash -c 'cd ~/h2o.docker; git pull; ./check_releases.sh'
+```
+
 ---
 
 *Tags*
