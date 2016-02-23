@@ -1,7 +1,11 @@
 # h2o.docker
 docker files for h2o http2 webserver, see https://h2o.examp1e.net/
 
-[![](https://badge.imagelayers.io/lkwg82/h2o-http2-server:latest.svg)](https://imagelayers.io/?images=lkwg82/h2o-http2-server:latest 'Get your own badge on imagelayers.io')
+[![](https://badge.imagelayers.io/lkwg82/h2o-http2-server:latest.svg)](https://hub.docker.com/r/lkwg82/h2o-http2-server/)
+
+[![](https://img.shields.io/docker/stars/lkwg82/h2o-http2-server.svg)](https://hub.docker.com/r/lkwg82/h2o-http2-server/)
+
+[![](https://img.shields.io/docker/pulls/lkwg82/h2o-http2-server.svg)](https://hub.docker.com/r/lkwg82/h2o-http2-server/)
 
 - ```latest``` (*[master/Dockerfile](https://github.com/lkwg82/h2o.docker/blob/master/Dockerfile)*)
 
