@@ -11,12 +11,13 @@ RUN apk update \
     # save state before installed packages for building \
     && grep ^P /lib/apk/db/installed | sed -e 's#^P:##g' | sort > /before \
     && apk add -U build-base \
+                  ca-certificates \
                   cmake \
                   git \
                   linux-headers \
                   zlib-dev \
-                  ca-certificates \
     && git clone $URL h2o \
+    # build h2o \
     && cd h2o \
     && git checkout $VERSION \
     && cmake -DWITH_BUNDLED_SSL=on . \
