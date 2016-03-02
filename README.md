@@ -21,6 +21,8 @@ $ curl http://localhost:8080/
 not found
 ```
 
+A short tutorial can be found https://blog.lgohlke.de/docker/h2o/2016/03/01/dockerized-h2o-webserver.html
+
 ---
 
 automatically ...
