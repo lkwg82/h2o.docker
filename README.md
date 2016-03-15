@@ -21,7 +21,7 @@ $ curl http://localhost:8080/
 not found
 ```
 
-A short tutorial can be found https://blog.lgohlke.de/docker/h2o/2016/03/01/dockerized-h2o-webserver.html
+A short tutorial can be found on https://blog.lgohlke.de/docker/h2o/2016/03/01/dockerized-h2o-webserver.html
 
 ---
 
@@ -60,6 +60,5 @@ in crontab
 - ```v1.6.2``` (*[v1.6.2/Dockerfile](https://github.com/lkwg82/h2o.docker/blob/v1.6.2/Dockerfile)*)
 - ```v1.6.3``` (*[v1.6.3/Dockerfile](https://github.com/lkwg82/h2o.docker/blob/v1.6.3/Dockerfile)*)
 - ```v1.7.0``` (*[v1.7.0/Dockerfile](https://github.com/lkwg82/h2o.docker/blob/v1.7.0/Dockerfile)*)
-
 - ```v1.7.1``` (*[v1.7.1/Dockerfile](https://github.com/lkwg82/h2o.docker/blob/v1.7.1/Dockerfile)*)
 - ```v2.0.0-beta1``` (*[v2.0.0-beta1/Dockerfile](https://github.com/lkwg82/h2o.docker/blob/v2.0.0-beta1/Dockerfile)*)
