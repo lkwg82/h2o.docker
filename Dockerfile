@@ -30,7 +30,9 @@ RUN apk update \
     && grep ^P /lib/apk/db/installed | sed -e 's#^P:##g' | sort > /after \
     && diff /before /after | grep -e "^+[^+]" | sed -e 's#+##g' | xargs -n1 apk del \
     && rm /before /after \
-    && rm -rf /var/cache/apk/*
+    && rm -rf /var/cache/apk/* \
+    # just test it \
+    && h2o -v
     
 RUN mkdir /etc/h2o
 ADD h2o.conf /etc/h2o/
