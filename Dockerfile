@@ -8,6 +8,8 @@ RUN apk update \
     && apk upgrade \
     # need for ocsp stapling \
     && apk add -U perl openssl \
+    # just needed since v2
+    && apk add -U libstdc++ \
     # save state before installed packages for building \
     && grep ^P /lib/apk/db/installed | sed -e 's#^P:##g' | sort > /before \
     && apk add -U build-base \
