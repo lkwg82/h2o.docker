@@ -63,3 +63,4 @@ in crontab
 - ```v1.7.1``` (*[v1.7.1/Dockerfile](https://github.com/lkwg82/h2o.docker/blob/v1.7.1/Dockerfile)*)
 - ```v1.7.2``` (*[v1.7.2/Dockerfile](https://github.com/lkwg82/h2o.docker/blob/v1.7.2/Dockerfile)*)
 - ```v1.7.3``` (*[v1.7.3/Dockerfile](https://github.com/lkwg82/h2o.docker/blob/v1.7.3/Dockerfile)*)
+- ```v2.0.0-beta3``` (*[v2.0.0-beta3/Dockerfile](https://github.com/lkwg82/h2o.docker/blob/v2.0.0-beta3/Dockerfile)*)
