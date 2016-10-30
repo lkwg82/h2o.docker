@@ -23,6 +23,32 @@ not found
 
 A short tutorial can be found on https://blog.lgohlke.de/docker/h2o/2016/03/01/dockerized-h2o-webserver.html
 
+A sample docker-compose file with reduced capability set
+
+```yaml
+version: '2'
+
+services:
+  h2o:
+    image: lkwg82/h2o-http2-server:v2.0.4
+    ports:
+       - "444:1443"
+    volumes:
+       - "/etc/h2o:/etc/h2o"
+       - "/etc/letsencrypt:/etc/letsencrypt"
+       - "/var/log/h2o:/var/log/h2o"
+    working_dir: /etc/h2o
+    restart: always
+    cap_add:
+       - setuid
+       - setgid
+       - chown
+    cap_drop:
+       - ALL
+
+# vim: syntax=yaml expandtab
+```
+
 ---
 
 automatically ...
