@@ -2,7 +2,7 @@
 
 set -e
 
-needUpdate=0
+needUpdate=1
 function checkforUpdates {
 	local images="alpine ubuntu"
 	for image in $images; do
@@ -38,3 +38,7 @@ for tag in $(git tag); do
 		echo "ignore old versions"
 	fi
 done
+
+latest=$(tail -n1 tagged.versions)
+docker tag lkwg82/h2o-http2-server:$latest lkwg82/h2o-http2-server:latest
+docker push lkwg82/h2o-http2-server:latest
