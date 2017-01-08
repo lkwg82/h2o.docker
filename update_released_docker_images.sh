@@ -29,8 +29,11 @@ fi
 for tag in $(git tag); do
 	echo "tag $tag"
 	if [[ "$tag" =~ ^v2.* ]]; then
-		docker build --no-cache --tag lkwg82/h2o-http2-server:$tag https://github.com/lkwg82/h2o.docker.git#$tag 
-		docker push lkwg82/h2o-http2-server:$tag
+	        image="lkwg82/h2o-http2-server:$tag"
+		docker build --no-cache --tag $image https://github.com/lkwg82/h2o.docker.git#$tag 
+		docker push $image
+		# cleanup local build cache
+		docker rmi $image
 	else 
 		echo "ignore old versions"
 	fi
