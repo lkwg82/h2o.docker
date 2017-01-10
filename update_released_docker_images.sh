@@ -2,7 +2,7 @@
 
 set -e
 
-needUpdate=1
+needUpdate=0
 function checkforUpdates {
 	local images="alpine ubuntu"
 	for image in $images; do
@@ -26,19 +26,21 @@ if [[ "$needUpdate" == "0" ]]; then
 fi
 
 
+latest=$(tail -n1 tagged.versions)
 for tag in $(git tag); do
 	echo "tag $tag"
 	if [[ "$tag" =~ ^v2.* ]]; then
 	        image="lkwg82/h2o-http2-server:$tag"
 		docker build --no-cache --tag $image https://github.com/lkwg82/h2o.docker.git#$tag 
 		docker push $image
+		if [[ "$latest" == "$tag" ]]; then
+			docker tag lkwg82/h2o-http2-server:$latest lkwg82/h2o-http2-server:latest
+			docker push lkwg82/h2o-http2-server:latest
+			docker rmi lkwg82/h2o-http2-server:latest
+		fi
 		# cleanup local build cache
 		docker rmi $image
 	else 
 		echo "ignore old versions"
 	fi
 done
-
-latest=$(tail -n1 tagged.versions)
-docker tag lkwg82/h2o-http2-server:$latest lkwg82/h2o-http2-server:latest
-docker push lkwg82/h2o-http2-server:latest
