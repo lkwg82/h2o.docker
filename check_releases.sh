@@ -32,8 +32,8 @@ for r in $releases; do
     #~ echo -n "checking $r ... "
     if [ $(grep ^$r$ tagged.versions | wc -l) -eq 0 ]; then
         echo " tagging '$r'"
-        changeVersion $r
         echo $r >> tagged.versions
+        changeVersion $r
     #~ else
         #~ echo " ... already tagged"
     fi
