@@ -104,3 +104,4 @@ in crontab
 - ```v2.0.5``` (*[v2.0.5/Dockerfile](https://github.com/lkwg82/h2o.docker/blob/v2.0.5/Dockerfile)*)
 - ```v2.1.0-beta4``` (*[v2.1.0-beta4/Dockerfile](https://github.com/lkwg82/h2o.docker/blob/v2.1.0-beta4/Dockerfile)*)
 - ```v2.0.6``` (*[v2.0.6/Dockerfile](https://github.com/lkwg82/h2o.docker/blob/v2.0.6/Dockerfile)*)
+- ```v2.1.0``` (*[v2.1.0/Dockerfile](https://github.com/lkwg82/h2o.docker/blob/v2.1.0/Dockerfile)*)
