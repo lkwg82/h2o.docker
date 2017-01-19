@@ -34,6 +34,7 @@ for r in $releases; do
         echo " tagging '$r'"
         echo $r >> tagged.versions
         changeVersion $r
+        touch new_version
     #~ else
         #~ echo " ... already tagged"
     fi

@@ -4,7 +4,7 @@ set -e
 
 needUpdate=0
 function checkforUpdates {
-	local images="alpine ubuntu"
+	local images=$@
 	for image in $images; do
 		docker pull $image
 	done
@@ -17,14 +17,15 @@ function checkforUpdates {
 	fi
 	echo $latest > images.latest		
 }
-
-checkforUpdates
-
-if [[ "$needUpdate" == "0" ]]; then 
-	echo "no update needed"
-	exit
+if [ -e "new_version" ]; then
+	rm new_version
+else
+	checkforUpdates alpine ubuntu debian
+	if [[ "$needUpdate" == "0" ]]; then 
+		echo "no update needed"
+		exit
+	fi
 fi
-
 
 latest=$(tail -n1 tagged.versions)
 for tag in $(git tag); do
