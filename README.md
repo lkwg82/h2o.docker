@@ -30,7 +30,7 @@ version: '2'
 
 services:
   h2o:
-    image: lkwg82/h2o-http2-server:v2.0.4
+    image: lkwg82/h2o-http2-server:v2.1.0
     ports:
        - "444:1443"
     volumes:
