@@ -6,7 +6,7 @@ tag=$1
 
 latest=$(tail -n1 tagged.versions)
 image="lkwg82/h2o-http2-server:$tag"
-docker build --no-cache --tag $image https://github.com/lkwg82/h2o.docker.git#$tag 
+docker build --no-cache --pull --tag $image https://github.com/lkwg82/h2o.docker.git#$tag 
 docker push $image
 if [[ "$latest" == "$tag" ]]; then
    docker tag lkwg82/h2o-http2-server:$latest lkwg82/h2o-http2-server:latest
