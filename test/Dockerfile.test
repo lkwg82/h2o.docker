@@ -1,0 +1,4 @@
+FROM test-simple
+
+RUN mkdir -p /var/www/html \
+    && echo "welcome" > /var/www/html/index.html

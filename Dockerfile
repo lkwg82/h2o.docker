@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:3.5
 MAINTAINER Lars K.W. Gohlke <lkwg82@gmx.de>
 
 ENV URL     https://github.com/h2o/h2o.git
@@ -22,7 +22,7 @@ RUN apk update \
     # build h2o \
     && cd h2o \
     && git checkout $VERSION \
-    && cmake -DWITH_BUNDLED_SSL=on . \
+    && cmake -DWITH_BUNDLED_SSL=on \
     && make install \
     && cd .. \
     && rm -rf h2o \
@@ -34,8 +34,8 @@ RUN apk update \
     # just test it \
     && h2o -v
     
-RUN mkdir /etc/h2o
+RUN mkdir /etc/h2o 
 ADD h2o.conf /etc/h2o/
 WORKDIR /etc/h2o
-EXPOSE 80 443
-CMD h2o
+EXPOSE 8080 8443
+CMD h2o --conf h2o.conf
