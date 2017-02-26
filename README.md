@@ -43,6 +43,7 @@ services:
        - setuid
        - setgid
        - chown
+       - sys_admin
     cap_drop:
        - ALL
 
