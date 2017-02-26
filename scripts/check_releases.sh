@@ -24,15 +24,15 @@ function changeVersion {
     git push --tags --force
 }
 
-apiResult=api.releases
+apiResult=.api.releases
 curl -s https://api.github.com/repos/h2o/h2o/releases > $apiResult
 releases=$(cat $apiResult | jq '.[] | .published_at + " " + .tag_name'| sed -e 's#"##g' | sort | cut -d\   -f2)
 
 for r in $releases; do
     #~ echo -n "checking $r ... "
-    if [ $(grep ^$r$ tagged.versions | wc -l) -eq 0 ]; then
+    if [ $(grep ^$r$ ../tagged.versions | wc -l) -eq 0 ]; then
         echo " tagging '$r'"
-        echo $r >> tagged.versions
+        echo $r >> ../tagged.versions
         changeVersion $r
         touch new_version
     #~ else

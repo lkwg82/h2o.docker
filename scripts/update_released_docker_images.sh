@@ -10,12 +10,12 @@ function checkforUpdates {
 	done
 	
 	local latest=$(docker inspect $images | jq '.[] | .RootFS' | sha1sum)
-	if [ -e "images.latest" ]; then
-		[[ $(cat images.latest) == $(echo $latest) ]] && echo "up-to-date" || needUpdate=1
+	if [ -e ".images.latest" ]; then
+		[[ $(cat .images.latest) == $(echo $latest) ]] && echo "up-to-date" || needUpdate=1
 	else				
 		echo "need update"
 	fi
-	echo $latest > images.latest		
+	echo $latest > .images.latest		
 }
 if [ -e "new_version" ]; then
 	rm new_version
