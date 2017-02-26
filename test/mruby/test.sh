@@ -20,8 +20,10 @@ function finish {
 trap finish EXIT
 
 # build image
-cd ..
-docker build -t test-simple . > /dev/null
+cd ../..
+echo -n "building image ... "
+docker build -t test-h2o . > /dev/null
+echo ok
 cd $OLDPWD
 
 docker build -t test-buddy -f Dockerfile.test . >/dev/null
@@ -33,6 +35,8 @@ cid=$(docker run --rm -d \
 	--cap-add SYS_ADMIN \
 	test-buddy)
 ip=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $cid)
+
+sleep 1
 
 set -x
 

@@ -13,16 +13,19 @@ RUN apk update \
     # save state before installed packages for building \
     && grep ^P /lib/apk/db/installed | sed -e 's#^P:##g' | sort > /before \
     && apk add -U build-base \
+		  bison \
                   ca-certificates \
                   cmake \
                   git \
                   linux-headers \
+		  ruby \
+                  ruby-dev \
                   zlib-dev \
     && git clone $URL h2o \
     # build h2o \
     && cd h2o \
     && git checkout $VERSION \
-    && cmake -DWITH_BUNDLED_SSL=on \
+    && cmake -DWITH_BUNDLED_SSL=on -DWITH_MRUBY=on \
     && make install \
     && cd .. \
     && rm -rf h2o \
