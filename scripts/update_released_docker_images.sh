@@ -14,9 +14,11 @@ function checkforUpdates {
 		[[ $(cat .images.latest) == $(echo $latest) ]] && echo "up-to-date" || needUpdate=1
 	else				
 		echo "need update"
+		needUpdate=1
 	fi
 	echo $latest > .images.latest		
 }
+
 if [ -e "new_version" ]; then
 	rm new_version
 else
