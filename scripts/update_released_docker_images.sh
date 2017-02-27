@@ -31,7 +31,7 @@ fi
 
 for tag in $(git tag); do
 	echo "tag $tag"
-	if [[ "$tag" =~ ^v2.* ]]; then
+	if [[ "$tag" =~ ^v2.1.* ]]; then
 		./build_tag.sh $tag
 	else 
 		echo "ignore old versions"
