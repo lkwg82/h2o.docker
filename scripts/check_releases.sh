@@ -26,7 +26,7 @@ function changeVersion {
 
 apiResult=.api.releases
 curl -s https://api.github.com/repos/h2o/h2o/releases > $apiResult
-releases=$(cat $apiResult | jq '.[] | .published_at + " " + .tag_name'| sed -e 's#"##g' | sort | cut -d\   -f2 | grep -v beta)
+releases=$(cat $apiResult | jq '.[] | .published_at + " " + .tag_name'| sed -e 's#"##g' | sort | cut -d\   -f2)
 
 for r in $releases; do
     #~ echo -n "checking $r ... "
