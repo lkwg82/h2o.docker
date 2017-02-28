@@ -106,3 +106,8 @@ in crontab
 - ```v2.1.0-beta4``` (*[v2.1.0-beta4/Dockerfile](https://github.com/lkwg82/h2o.docker/blob/v2.1.0-beta4/Dockerfile)*)
 - ```v2.0.6``` (*[v2.0.6/Dockerfile](https://github.com/lkwg82/h2o.docker/blob/v2.0.6/Dockerfile)*)
 - ```v2.1.0``` (*[v2.1.0/Dockerfile](https://github.com/lkwg82/h2o.docker/blob/v2.1.0/Dockerfile)*)
+- ```v2.1.0-beta1``` (*[v2.1.0-beta1/Dockerfile](https://github.com/lkwg82/h2o.docker/blob/v2.1.0-beta1/Dockerfile)*)
+- ```v2.1.0-beta1``` (*[v2.1.0-beta1/Dockerfile](https://github.com/lkwg82/h2o.docker/blob/v2.1.0-beta1/Dockerfile)*)
+- ```v2.1.0-beta1``` (*[v2.1.0-beta1/Dockerfile](https://github.com/lkwg82/h2o.docker/blob/v2.1.0-beta1/Dockerfile)*)
+- ```v2.2.0-beta1``` (*[v2.2.0-beta1/Dockerfile](https://github.com/lkwg82/h2o.docker/blob/v2.2.0-beta1/Dockerfile)*)
+- ```v2.2.0-beta1``` (*[v2.2.0-beta1/Dockerfile](https://github.com/lkwg82/h2o.docker/blob/v2.2.0-beta1/Dockerfile)*)
