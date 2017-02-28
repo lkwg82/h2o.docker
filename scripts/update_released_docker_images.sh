@@ -29,11 +29,9 @@ else
 	fi
 fi
 
-for tag in $(git tag); do
+for tag in $(git tag \
+  | grep -vE "^v1|^v2.0|^v2.1.*beta*"
+); do
 	echo "tag $tag"
-	if [[ "$tag" =~ ^v2.1.* ]]; then
-		./build_tag.sh $tag
-	else 
-		echo "ignore old versions"
-	fi
+	./build_tag.sh $tag
 done
