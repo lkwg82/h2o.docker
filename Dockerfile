@@ -1,4 +1,4 @@
-FROM alpine:3.5
+FROM alpine:3.7
 MAINTAINER Lars K.W. Gohlke <lkwg82@gmx.de>
 
 ENV URL     https://github.com/h2o/h2o.git
