@@ -31,8 +31,7 @@ releases=$(cat $apiResult \
 		| sed -e 's#"##g' \
 		| sort \
 		| cut -d\   -f2 \
-		| grep -v "v1." \
-		| grep -v "v2.0" 
+		| grep -vE "v1.*|v2.0|v2.1|v2.2.*beta*"
 )
 
 for r in $releases; do
