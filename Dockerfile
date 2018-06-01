@@ -2,7 +2,7 @@ FROM alpine:3.7
 MAINTAINER Lars K.W. Gohlke <lkwg82@gmx.de>
 
 ENV URL     https://github.com/h2o/h2o.git
-ENV VERSION  tags/v2.2.4
+ENV VERSION  tags/v2.2.5
 
 RUN apk update \
     && apk upgrade \
