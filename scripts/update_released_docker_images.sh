@@ -30,7 +30,7 @@ else
 fi
 
 for tag in $(git tag \
-  | grep -vE "^v1|^v2.0|^v2.1.*beta*"
+  | grep -vE "^v1|^v2.0|^v2.1.*|^v2.2.*beta*"
 ); do
 	echo "tag $tag"
 	./build_tag.sh $tag
