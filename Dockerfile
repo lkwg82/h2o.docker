@@ -1,4 +1,4 @@
-FROM alpine:3.7 as builder
+FROM alpine as builder
 MAINTAINER Lars K.W. Gohlke <lkwg82@gmx.de>
 
 
@@ -30,7 +30,7 @@ RUN git checkout $VERSION \
 
 RUN h2o -v
 
-FROM alpine:3.7
+FROM alpine
 
 COPY --from=builder /usr/local/bin/h2o /usr/local/bin
 COPY --from=builder /usr/local/share/h2o /usr/local/share/h2o
@@ -45,6 +45,7 @@ RUN    apk add -U --no-cache openssl perl \
     && apk del upx ucl \
     && rm -rf /var/lib/apk
 
+# checkpoint
 RUN h2o -v
 
 RUN mkdir /etc/h2o 
