@@ -19,6 +19,7 @@ RUN apk update \
                   git \
                   linux-headers \
 		  ruby \
+		          openssl-dev \
                   ruby-dev \
                   zlib-dev \
     && git clone $URL h2o \
