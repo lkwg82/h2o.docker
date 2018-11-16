@@ -17,16 +17,18 @@ RUN apk add \
               ruby-dev \
               zlib-dev
 
-ENV URL     https://github.com/h2o/h2o.git
+RUN mkdir h2o && git init h2o
+WORKDIR /h2o
+
+ENV URL      https://github.com/h2o/h2o.git
 ENV VERSION  tags/v2.3.0-beta1
 
-RUN  git clone $URL h2o
+RUN git fetch --depth 1 $URL $VERSION
+RUN git checkout FETCH_HEAD
 
-# build h2o \
-WORKDIR h2o
-RUN git checkout $VERSION \
-    && cmake -DWITH_BUNDLED_SSL=on -DWITH_MRUBY=on \
-    && make install
+# build h2o
+RUN cmake -DWITH_BUNDLED_SSL=on -DWITH_MRUBY=on \
+    && make -j 8 install
 
 RUN h2o -v
 
