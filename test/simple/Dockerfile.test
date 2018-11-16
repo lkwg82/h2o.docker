@@ -1,4 +1,7 @@
 FROM test-h2o
 
-RUN mkdir -p /var/www/html \
-    && echo "welcome" > /var/www/html/index.html
+ADD h2o.conf .
+RUN mkdir -p html \
+    && echo "welcome" > index.html \
+    && ls -asl \
+    && pwd

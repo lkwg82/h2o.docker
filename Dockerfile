@@ -45,11 +45,15 @@ RUN    apk add -U --no-cache openssl perl \
     && apk del upx ucl \
     && rm -rf /var/lib/apk
 
+
+RUN    addgroup h2o \
+    && adduser -G h2o -D h2o
+WORKDIR /home/h2o
+USER h2o
+
 # checkpoint
 RUN h2o -v
 
-RUN mkdir /etc/h2o 
-ADD h2o.conf /etc/h2o/
-WORKDIR /etc/h2o
+ADD h2o.conf /home/h2o/
 EXPOSE 8080 8443
 CMD h2o --conf h2o.conf
