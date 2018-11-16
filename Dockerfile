@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM alpine:3.7 as builder
 MAINTAINER Lars K.W. Gohlke <lkwg82@gmx.de>
 
 ENV URL     https://github.com/h2o/h2o.git
@@ -37,7 +37,17 @@ RUN apk update \
     && rm -rf /var/cache/apk/* \
     # just test it \
     && h2o -v
-    
+
+FROM alpine:3.7
+
+RUN apk add -U --no-cache openssl perl ruby
+
+COPY --from=builder /usr/local/bin/h2o /usr/local/bin
+COPY --from=builder /usr/local/share/h2o /usr/local/share/h2o
+COPY --from=builder /usr/local/lib64/libh2o-evloop.a /usr/local/lib64/libh2o-evloop.a
+
+RUN h2o -v
+
 RUN mkdir /etc/h2o 
 ADD h2o.conf /etc/h2o/
 WORKDIR /etc/h2o
