@@ -41,6 +41,6 @@ sleep 1
 set -x
 
 # tests
-curl -v --fail http://$ip:8080 >/dev/null 2>&1
+curl -v --fail --connect-timeout 1 http://$ip:8080 >/dev/null 2>&1
 
 set +x
