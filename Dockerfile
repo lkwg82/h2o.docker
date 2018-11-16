@@ -1,50 +1,49 @@
 FROM alpine:3.7 as builder
 MAINTAINER Lars K.W. Gohlke <lkwg82@gmx.de>
 
+
+RUN apk update && apk upgrade
+# just needed since v2
+RUN apk add libstdc++
+RUN apk add \
+      build-base \
+      bison \
+              ca-certificates \
+              cmake \
+              git \
+              linux-headers \
+      ruby \
+              openssl-dev \
+              ruby-dev \
+              zlib-dev
+
 ENV URL     https://github.com/h2o/h2o.git
 ENV VERSION  tags/v2.3.0-beta1
 
-RUN apk update \
-    && apk upgrade \
-    # need for ocsp stapling \
-    && apk add -U perl openssl \
-    # just needed since v2
-    && apk add -U libstdc++ \
-    # save state before installed packages for building \
-    && grep ^P /lib/apk/db/installed | sed -e 's#^P:##g' | sort > /before \
-    && apk add -U build-base \
-		  bison \
-                  ca-certificates \
-                  cmake \
-                  git \
-                  linux-headers \
-		  ruby \
-		          openssl-dev \
-                  ruby-dev \
-                  zlib-dev \
-    && git clone $URL h2o \
-    # build h2o \
-    && cd h2o \
-    && git checkout $VERSION \
+RUN  git clone $URL h2o
+
+# build h2o \
+WORKDIR h2o
+RUN git checkout $VERSION \
     && cmake -DWITH_BUNDLED_SSL=on -DWITH_MRUBY=on \
-    && make install \
-    && cd .. \
-    && rm -rf h2o \
-    # remove packages installed just for building \
-    && grep ^P /lib/apk/db/installed | sed -e 's#^P:##g' | sort > /after \
-    && diff /before /after | grep -e "^+[^+]" | sed -e 's#+##g' | xargs -n1 apk del \
-    && rm /before /after \
-    && rm -rf /var/cache/apk/* \
-    # just test it \
-    && h2o -v
+    && make install
+
+RUN h2o -v
 
 FROM alpine:3.7
-
-RUN apk add -U --no-cache openssl perl ruby
 
 COPY --from=builder /usr/local/bin/h2o /usr/local/bin
 COPY --from=builder /usr/local/share/h2o /usr/local/share/h2o
 COPY --from=builder /usr/local/lib64/libh2o-evloop.a /usr/local/lib64/libh2o-evloop.a
+
+# need for ocsp stapling \
+RUN    apk add -U --no-cache openssl perl \
+# compress some
+    && apk add upx \
+    && find /usr -type f -name "*.so" -exec chmod u=+wx {} \; \
+    && find /usr -type f -name "*.so" -exec upx -q9 {} \; \
+    && apk del upx ucl \
+    && rm -rf /var/lib/apk
 
 RUN h2o -v
 
