@@ -51,9 +51,6 @@ RUN    addgroup h2o \
 WORKDIR /home/h2o
 USER h2o
 
-# checkpoint
-RUN h2o -v
-
 ADD h2o.conf /home/h2o/
 EXPOSE 8080 8443
 CMD h2o --conf h2o.conf
