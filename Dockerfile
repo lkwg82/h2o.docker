@@ -21,7 +21,7 @@ RUN mkdir h2o && git init h2o
 WORKDIR /h2o
 
 ENV URL      https://github.com/h2o/h2o.git
-ENV VERSION  tags/v2.3.0-beta1
+ENV VERSION  tags/v2.2.5
 
 RUN git fetch --depth 1 $URL $VERSION
 RUN git checkout FETCH_HEAD
