@@ -22,7 +22,7 @@ docker build -t test-buddy -f Dockerfile . >/dev/null
 
 for test in $(find -type f -name test.sh); do
   echo "TEST: ${test}"
-	pushd $(dirname $test)
-	./$(basename $test)
-	popd
+	pushd $(dirname $test) > /dev/null
+	SKIP_BASEIMAGE_BUILD=1 ./$(basename $test)
+	popd > /dev/null
 done

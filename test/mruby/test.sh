@@ -21,16 +21,19 @@ function finish {
 }
 trap finish EXIT
 
-# build image
-cd ../..
-echo -n "building image ... "
-docker build -t test-h2o . #> /dev/null
-echo ok
-cd $OLDPWD
+if [[ -z "${SKIP_BASEIMAGE_BUILD}" ]]; then
+  # build image
+  cd ../..
+  echo -n "building base image ... "
+  docker build -t test-h2o . > /dev/null
+  echo ok
+  cd $OLDPWD
+fi
 
 docker build -t test-buddy -f Dockerfile.test . >/dev/null
 
-docker run --cidfile .cid --rm -d \
+docker run --rm -d \
+  --cidfile .cid  \
 	--cap-drop ALL \
 	--cap-add SETUID \
 	--cap-add SETGID \
@@ -40,9 +43,9 @@ ip=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}
 
 sleep 1
 
-set -x
+#set -x
 
 # tests
 curl -v --fail --connect-timeout 1 http://$ip:8080 >/dev/null 2>&1
 
-set +x
+#set +x
