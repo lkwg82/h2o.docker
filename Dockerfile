@@ -55,5 +55,9 @@ USER h2o
 
 ADD h2o.conf /home/h2o/
 EXPOSE 8080 8443
-RUN h2o --conf h2o.conf --test
+
+# some self tests
+RUN    h2o -v \
+    && h2o --conf h2o.conf --test
+
 CMD h2o --conf h2o.conf
