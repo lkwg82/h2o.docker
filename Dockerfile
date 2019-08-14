@@ -39,7 +39,7 @@ COPY --from=builder /usr/local/share/h2o /usr/local/share/h2o
 COPY --from=builder /usr/local/lib64/libh2o-evloop.a /usr/local/lib64/libh2o-evloop.a
 
 # need for ocsp stapling \
-RUN    apk add -U --no-cache openssl perl \
+RUN    apk add -U --no-cache openssl perl  libstdc++\
 # compress some
     && apk add upx \
     && find /usr -type f -name "*.so" -exec chmod u=+wx {} \; \
@@ -55,4 +55,5 @@ USER h2o
 
 ADD h2o.conf /home/h2o/
 EXPOSE 8080 8443
+RUN h2o --conf h2o.conf --test
 CMD h2o --conf h2o.conf
