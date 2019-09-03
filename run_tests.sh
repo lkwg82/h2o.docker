@@ -7,7 +7,7 @@ function finish {
         local exitCode=$?
 
 	echo
-        echo "----------------------"        
+        echo "----------------------"
         if [ "$exitCode" == "0" ]; then
                 echo "Tests: SUCCESS"
         else
@@ -17,8 +17,11 @@ function finish {
 }
 trap finish EXIT
 
-
-docker build -t test-buddy -f Dockerfile . >/dev/null
+if [[ -z "${BASEIMAGE_TAG}" ]]; then
+  docker build -t test-h2o -f Dockerfile . >/dev/null
+else
+  docker tag ${BASEIMAGE_TAG} test-h2o
+fi
 
 for test in $(find -type f -name test.sh); do
   echo "TEST: ${test}"
