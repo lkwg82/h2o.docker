@@ -5,18 +5,20 @@ set -e
 function finish {
 	local exitCode=$?
 
-	echo ".. cleanup"
-        docker image rm -f test-buddy >/dev/null
-        docker kill $(cat .cid) > /dev/null
-        rm -f .cid
+  echo ".. cleanup"
+  if [[ -f ".cid" ]]; then
+          docker image rm -f test-buddy >/dev/null
+          docker kill $(cat .cid) > /dev/null
+          rm -f .cid
 
-	echo "---------"
-	if [ "$exitCode" == "0" ]; then
-		echo "Test: SUCCESS"
-	else
-		docker logs $cid
-		echo "Test: failed"
-		exit $exitCode
+    echo "---------"
+    if [ "$exitCode" == "0" ]; then
+      echo "Test: SUCCESS"
+    else
+      docker logs $cid
+      echo "Test: failed"
+      exit $exitCode
+    fi
 	fi
 }
 trap finish EXIT
