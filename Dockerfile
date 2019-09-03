@@ -38,14 +38,7 @@ COPY --from=builder /usr/local/share/h2o /usr/local/share/h2o
 COPY --from=builder /usr/local/lib64/libh2o-evloop.a /usr/local/lib64/libh2o-evloop.a
 
 # need for ocsp stapling \
-RUN    apk add -U --no-cache openssl perl libstdc++ \
-# compress some
-    && apk add upx \
-    && find /usr -type f -name "*.so" -exec chmod u=+wx {} \; \
-    && find /usr -type f -name "*.so" -exec upx -q9 {} \; \
-    && apk del upx ucl \
-    && rm -rf /var/lib/apk
-
+RUN    apk add -U --no-cache openssl perl libstdc++
 
 RUN    addgroup h2o \
     && adduser -G h2o -D h2o
