@@ -1,29 +1,22 @@
 FROM alpine as builder
 MAINTAINER Lars K.W. Gohlke <lkwg82@gmx.de>
 
-RUN apk update && apk upgrade
-# just needed since v2
-RUN apk add libstdc++
-RUN apk add \
-      build-base \
-      bison \
-              ca-certificates \
-              cmake \
-              git \
-              linux-headers \
-      ruby \
-              openssl-dev \
-              ruby-dev \
-              zlib-dev
-
-RUN mkdir h2o && git init h2o
-WORKDIR /h2o
+RUN apk add --update libstdc++ \
+                    build-base \
+                    bison \
+                    ca-certificates \
+                    cmake \
+                    git \
+                    linux-headers \
+                    ruby \
+                    openssl-dev \
+                    ruby-dev \
+                    zlib-dev
 
 ENV URL      https://github.com/h2o/h2o.git
-ENV VERSION  tags/v2.2.6
-
-RUN git fetch --depth 1 $URL $VERSION
-RUN git checkout FETCH_HEAD
+ENV VERSION  v2.2.6
+RUN git clone --depth 1 $URL -b $VERSION
+WORKDIR /h2o
 
 # build h2o
 RUN cmake -DWITH_BUNDLED_SSL=on -DWITH_MRUBY=on \
