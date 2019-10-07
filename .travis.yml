@@ -2,4 +2,5 @@ services:
   - docker
 
 script:
-  - ./run_tests.sh
+  - bash -c 'env | sort'
+#  - ./run_tests.sh
