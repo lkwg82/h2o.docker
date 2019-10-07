@@ -4,7 +4,7 @@ docker files for h2o http2 webserver, see https://h2o.examp1e.net/
 
 [![](https://badge.imagelayers.io/lkwg82/h2o-http2-server:latest.svg)](https://imagelayers.io/?images=lkwg82%2Fh2o-http2-server:latest)
 [![](https://img.shields.io/docker/stars/lkwg82/h2o-http2-server.svg)](https://hub.docker.com/r/lkwg82/h2o-http2-server/)
-[![](https://img.shields.io/docker/pulls/lkwg82/h2o-http2-server.svg)](https://hub.docker.com/r/lkwg82/h2o-http2-server/)
+[![](https://img.shields.io/travis/lkwg82/h2o.docker.svg)](https://travis-ci.org/lkwg82/h2o.docker/builds)
 
 - ```latest``` (*[master/Dockerfile](https://github.com/lkwg82/h2o.docker/blob/master/Dockerfile)*)
 
