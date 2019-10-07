@@ -26,6 +26,6 @@ fi
 for test in $(find -type f -name test.sh); do
   echo "TEST: ${test}"
 	pushd $(dirname $test) > /dev/null
-	SKIP_BASEIMAGE_BUILD=1 ./$(basename $test)
+	SKIP_BASEIMAGE_BUILD=0 ./$(basename $test)
 	popd > /dev/null
 done

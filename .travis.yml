@@ -3,4 +3,4 @@ services:
 
 script:
   - bash -c 'env | sort'
-#  - ./run_tests.sh
+  - ./run_tests.sh
