@@ -24,16 +24,16 @@ function finish {
 trap finish EXIT
 
 
-if [[ -z "${SKIP_BASEIMAGE_BUILD}" ]]; then
+if [[ -z ${SKIP_BASEIMAGE_BUILD} ]]; then
   # build image
   cd ../..
   echo -n "building base image ... "
-  docker build -t test-h2o . > /dev/null
+  docker build -t test-h2o .
   echo ok
   cd $OLDPWD
 fi
 
-docker build -t test-buddy -f Dockerfile.test . >/dev/null
+docker build -t test-buddy -f Dockerfile.test .
 
 # cleanup, in case of previous error
 rm -f .cid
